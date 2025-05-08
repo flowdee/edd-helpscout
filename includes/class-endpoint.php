@@ -358,7 +358,7 @@ class Endpoint {
 				'total'          => edd_payment_amount( $payment->ID ),
 				'items'          => $order_items,
 				'payment_method' => $this->get_payment_method( $payment ),
-				'date'           => $payment_date,
+				'date'           => $this->convert_to_wp_timezone($payment_date),
 				'status'         => $payment->status,
 				'status_label'   => $status_label,
 				'status_color'   => $status_color,
@@ -670,6 +670,27 @@ class Endpoint {
 
 		return $payment_method;
 	}
+
+    /**
+     * Converts a given datetime string to the WordPress timezone.
+     *
+     * @param string $datetime The datetime string in 'UTC' to be converted.
+     * @return string The datetime string adjusted to the WordPress timezone or the original datetime in case of failure.
+     */
+    private function convert_to_wp_timezone( $datetime ) {
+        if ( empty( $datetime ) ) {
+            return '';
+        }
+
+        $wp_timezone = wp_timezone(); // WordPress timezone object
+        try {
+            $date = new \DateTime( $datetime, new \DateTimeZone( 'UTC' ) );
+            $date->setTimezone( $wp_timezone );
+            return $date->format( 'Y-m-d H:i:s' ); // Adjust format as needed
+        } catch ( Exception $e ) {
+            return $datetime; // Fallback to original
+        }
+    }
 
 	/**
 	 * Set JSON headers, return the given response string
