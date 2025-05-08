@@ -687,7 +687,7 @@ class Endpoint {
             $date = new \DateTime( $datetime, new \DateTimeZone( 'UTC' ) );
             $date->setTimezone( $wp_timezone );
             return $date->format( 'Y-m-d H:i:s' ); // Adjust format as needed
-        } catch ( Exception $e ) {
+        } catch ( \Exception $e ) {
             return $datetime; // Fallback to original
         }
     }
