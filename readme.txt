@@ -82,6 +82,10 @@ You can then call https://your-site.com/edd-helpscout-api/customer_info directly
 
 Make sure the "Secret Key" setting for your Help Scout application matches the value of your `HELPSCOUT_SECRET_KEY` constant. This key is used to authorize requests coming from HelpScout.
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team helps validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/bd828d49-1f49-4993-b49d-60b60f2f31a6)
+
 == Screenshots ==
 
 1. Customer overview with Licenses area opened by default
