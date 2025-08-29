@@ -129,6 +129,10 @@ class Endpoint {
 			return true;
 		}
 
+		if ( isset( $_SERVER['HTTP_X_FREESCOUT_SIGNATURE'] ) && $request->signature_equals( $_SERVER['HTTP_X_FREESCOUT_SIGNATURE'] ) ) {
+			return true;
+		}
+
 		return false;
 	}
 
