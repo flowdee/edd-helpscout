@@ -34,7 +34,7 @@ class Request {
 	 * @return string
 	 */
 	private function create_expected_signature() {
-		return base64_encode( hash_hmac( 'sha1', json_encode( $this->data ), self::$secret_key, true ) );
+		return base64_encode( hash_hmac( 'sha1', json_encode( $this->data, JSON_UNESCAPED_UNICODE ), self::$secret_key, true ) );
 	}
 
 	/**
